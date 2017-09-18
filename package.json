@@ -1,0 +1,20 @@
+{
+  "name": "timekeeper-mysql",
+  "version": "1.0.0",
+  "description": "MySQL Database for Timekeeper App",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "mysql"
+  ],
+  "author": "Ryan Callaway",
+  "license": "ISC",
+  "devDependencies": {
+    "execute": "^0.1.0",
+    "grunt": "^1.0.1",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-execute": "^0.2.2"
+  }
+}
