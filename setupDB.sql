@@ -1,0 +1,47 @@
+CREATE DATABASE timekeeper;
+
+USE timekeeper;
+
+CREATE TABLE IF NOT EXISTS redmine (
+	id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	subject VARCHAR(500),
+	redmine_num INTEGER UNSIGNED,
+	project INTEGER UNSIGNED,
+	percent_done INTEGER(3) UNSIGNED,
+	INDEX(redmine_num),
+	FULLTEXT(subject)
+);
+
+CREATE TABLE IF NOT EXISTS project (
+	id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	name VARCHAR(255) NOT NULL,
+	INDEX (name)
+);
+
+CREATE TABLE IF NOT EXISTS time_spent (
+	id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	redmine_num INTEGER UNSIGNED,
+	hours_spent DECIMAL(4,2) NOT NULL,
+	description VARCHAR (500),
+	work_type INTEGER UNSIGNED,
+	INDEX(redmine_num),
+	FULLTEXT(description)
+);
+
+CREATE TABLE IF NOT EXISTS work_type(
+	id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	work_type VARCHAR(255) NOT NULL,
+	INDEX (work_type)
+);
+
+ALTER TABLE redmine
+	ADD FOREIGN KEY (project)
+	REFERENCES project(id);
+
+ALTER TABLE time_spent
+	ADD FOREIGN KEY (redmine_num)
+	REFERENCES redmine(id);
+
+ALTER TABLE time_spent
+	ADD FOREIGN KEY (work_type)
+	REFERENCES work_type(id);
